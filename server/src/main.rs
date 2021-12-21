@@ -1,3 +1,4 @@
+#![warn(clippy::pedantic, clippy::nursery)]
 use tokio::net::TcpListener;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use std::collections::HashMap;
@@ -49,7 +50,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                     if key != &name {
                         if let Err(e) = value.lock().await.write_all( &[(name.as_bytes()), &buf[0..n]].concat()).await {
                             eprintln!("failed to write to socket; err = {:?}", e);
-                            failed_clients.push(key.to_owned());
+                            failed_clients.push(key.clone());
                         }
                     }
                 }

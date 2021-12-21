@@ -1,3 +1,4 @@
+#![warn(clippy::pedantic, clippy::nursery)]
 use clap::Parser;
 use std::error::Error;
 use std::io;
