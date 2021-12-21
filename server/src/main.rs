@@ -47,7 +47,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 // send to all other clients
                 for (key, value) in clients.lock().await.iter() {
                     if key != &name {
-                        if let Err(e) = value.lock().await.write_all( &[(&name.as_bytes()), &buf[0..n]].concat()).await {
+                        if let Err(e) = value.lock().await.write_all( &[(name.as_bytes()), &buf[0..n]].concat()).await {
                             eprintln!("failed to write to socket; err = {:?}", e);
                             failed_clients.push(key.to_owned());
                         }
