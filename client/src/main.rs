@@ -1,22 +1,12 @@
 #![warn(clippy::pedantic, clippy::nursery)]
-use clap::Parser;
 use std::error::Error;
 use std::io;
 use std::str;
 use tokio::net::TcpStream;
 use tokio::io::{AsyncWriteExt, AsyncReadExt};
 
-#[derive(Parser, Debug)]
-#[clap(name = "chat client", author = "Richard")]
-struct Args {
-    // port number that this client will run on
-    port: i16
-}
-
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    // let args = Args::parse();
-    // println!("Hello, world! {}", args.port);
     let stream = TcpStream::connect("127.0.0.1:8888").await?;
     let (mut read_half, mut write_half) = stream.into_split();
     println!("Enter your username: ");
