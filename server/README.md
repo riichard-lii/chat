@@ -1,5 +1,5 @@
 # Chat thing
-Attempt at making a chat application in rust
+Attempt at making a chat server in rust
 
 # Usage 
 run with 
